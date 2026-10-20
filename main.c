@@ -10,10 +10,14 @@ void _vec_print(size_t idx, const void *data);
 int main(int argc, char const *argv[])
 {
     vector_t _vec, *vec = &_vec;
-    if (!vector_init(&_vec, sizeof(int), 10))
+    if (!vector_init(&_vec, sizeof(int), 16))
     {
         return 1;
     }
+
+    printf("_msize(vector_end(vec)) = %zu\n", _msize(vector_end(vec)));
+
+    return 0;
 
     _vec.m_flags |= VFLAG_FIXED_CAP;
 

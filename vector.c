@@ -180,6 +180,13 @@ void * vector_back(vector_t *vec)
     return vec->m_size > 0 && vec->m_data ? (char*)vec->m_data + (vec->m_size - 1) * vec->m_elem : NULL;
 }
 
+void * vector_end(vector_t *vec)
+{
+    assert(vec != NULL);
+
+    return vec->m_data ? (char*)vec->m_data + vec->m_size * vec->m_elem : NULL;
+}
+
 bool vector_insert(vector_t *vec, size_t idx, void *data)
 {
     assert(vec != NULL);
@@ -228,8 +235,28 @@ bool vector_delete(vector_t *vec, size_t idx)
     return true;
 }
 
-bool vector_get(vector_t *vec, size_t idx, void *out_obj);
-bool vector_set(vector_t *vec, size_t idx, void *obj);
+bool vector_get(vector_t *vec, size_t idx, void *out_obj)
+{
+    assert(vec != NULL);
+    assert(out_obj != NULL);
+
+    if (idx >= vec->m_size) return false;
+
+    _vec_get(vec, idx, 1, out_obj);
+
+    return true;
+}
+bool vector_set(vector_t *vec, size_t idx, void *obj)
+{
+    assert(vec != NULL);
+    assert(obj != NULL);
+
+    if (idx >= vec->m_size) return false;
+
+    _vec_set(vec, idx, 1, obj);
+
+    return false;
+}
 
 bool vector_append(vector_t *vec, void *data, size_t count)
 {

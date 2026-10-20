@@ -41,6 +41,7 @@ bool vector_set_fixed_capacity(vector_t *vec, size_t capacity);
 
 void * vector_front(vector_t *vec);
 void * vector_back(vector_t *vec);
+void * vector_end(vector_t *vec);
 
 bool vector_push(vector_t *vec, void *obj);
 bool vector_pop(vector_t *vec, void *out);
